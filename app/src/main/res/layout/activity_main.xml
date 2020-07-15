@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <include layout="@layout/common_title_layout"/>
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/map_view"
+        android:layout_below="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"></com.baidu.mapapi.map.MapView>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/ll_select"
+        android:layout_below="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite">
+        <Button
+            android:id="@+id/bt_area"
+            android:text="选择区域"
+            android:onClick="chooseArea"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:background="@color/colorNull"/>
+
+        <Button
+            android:id="@+id/bt_location"
+            android:background="@color/colorNull"
+            android:text="定点范围"
+            android:onClick="choosePoint"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/bt_range"
+            android:background="@color/colorNull"
+            android:text="范围"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <!--<Button
+            android:id="@+id/bt_stime"
+            android:text="开始时间"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/colorNull"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#45;&#45;"/>
+        <Button
+            android:id="@+id/bt_etime"
+            android:text="结束时间"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/colorNull"/>-->
+
+        <Button
+            android:id="@+id/bt_number"
+            android:text="选择数量"
+            android:onClick="chooseNumber"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/colorNull"/>
+        <Button
+            android:id="@+id/bt_submit"
+            android:text="提交"
+            android:onClick="onSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorNull"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_door"
+        android:layout_below="@id/ll_select"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLightBlue"
+        android:layout_marginBottom="65dp"></android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tv_show_info"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:text="选中0个小区\n0道门"
+        android:layout_marginBottom="35dp"
+        android:background="@color/colorWhite"
+        android:paddingLeft="10dp"/>
+
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:visibility="gone"
+        android:layout_below="@id/ll_select"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlackAlpha">
+        <TextView
+            android:id="@+id/tv_area_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="right"
+            android:textSize="25sp"
+            android:layout_margin="10dp"
+            android:text="确定"/>
+        <TextView
+            android:id="@+id/tv_area_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp"
+            android:layout_margin="10dp"
+            android:text="取消"/>
+    <android.support.v7.widget.RecyclerView
+        android:layout_margin="10dp"
+        android:id="@+id/rv_area"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:background="@color/colorLightBlue"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"></android.support.v7.widget.RecyclerView>
+    </FrameLayout>
+</RelativeLayout>

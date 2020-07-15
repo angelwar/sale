@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:padding="10dp"
+        android:text="@string/app_name"
+        android:id="@+id/tv_company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <TextView
+            android:padding="10dp"
+            android:text="--"
+            android:textSize="@dimen/dp_s_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:padding="10dp"
+            android:text="@string/app_name"
+            android:id="@+id/tv_company_brand"
+            android:textSize="@dimen/dp_s_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_sale_name"
+        android:layout_marginLeft="10dp"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="所属销售："/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_marginLeft="10dp"
+        android:textSize="12sp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="客户类型："/>
+        <TextView
+        android:id="@+id/tv_sale_status"
+        android:layout_marginLeft="10dp"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="审核通过"
+        android:layout_marginRight="10dp"/>
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_expire_time"
+        android:layout_marginLeft="10dp"
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="时间："/>
+    <RelativeLayout
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/tv_pass"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="通过审核"
+            android:padding="5dp"
+            android:background="@drawable/item_button_bg"
+            android:textColor="@color/green"
+            android:layout_marginRight="10dp"/>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_delete"
+            android:layout_marginRight="20dp"
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:background="@drawable/item_button_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:textColor="@color/green"
+            android:layout_toLeftOf="@id/tv_pass"/>
+    </RelativeLayout>
+</LinearLayout>

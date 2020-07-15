@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">环纵销售</string>
+    <string name="area_json">[{"id":2,"name":"高新区"},{"id":5,"name":"郫县"},{"id":4,"name":"天府新区"},{"id":7,"name":"温江"},{"id":8,"name":"龙泉"},{"id":9,"name":"新都"},{"id":10,"name":"双流"},{"id":11,"name":"成华"},{"id":12,"name":"青羊"},{"id":13,"name":"武侯"},{"id":14,"name":"金牛"},{"id":15,"name":"郫都"},{"id":16,"name":"锦江"},{"id":17,"name":"成华区"}]</string>
+</resources>

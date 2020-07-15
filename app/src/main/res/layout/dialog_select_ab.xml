@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_ab_title"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="请选择要添加的点位"/>
+
+    <Button
+        android:id="@+id/bt_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/select_door_ab"
+        android:text="A面"
+        android:textColor="@color/colorWhite"/>
+
+    <Button
+        android:id="@+id/bt_b"
+        android:layout_marginTop="90dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:text="B面"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/select_door_ab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/bt_dh"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:text="进入导航模式"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/bg_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</RelativeLayout>

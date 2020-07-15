@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.HeadActivity">
+
+    <FrameLayout
+        android:id="@+id/frame_head"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/tv_shenhe"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="审核列表"
+            android:button="@null"
+            android:background="@drawable/select_main_title"
+            android:gravity="center"/>
+        <RadioButton
+            android:id="@+id/tv_company"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="客户列表"
+            android:textColor="@color/colorWhite"
+            android:button="@null"
+            android:checked="true"
+            android:background="@drawable/select_main_title"
+            android:gravity="center"/>
+
+        <RadioButton
+            android:id="@+id/tv_my"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:button="@null"
+            android:background="@drawable/select_main_title"
+            android:text="我的"/>
+
+    </RadioGroup>
+
+</LinearLayout>
