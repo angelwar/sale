@@ -8,6 +8,7 @@ import com.huanozong.sale.bean.LevelBaseBean;
 import com.huanozong.sale.bean.LoginData;
 import com.huanozong.sale.bean.OrderListBean;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface APIService {
 
@@ -45,11 +47,10 @@ public interface APIService {
      * http://app.hzmtkj.com/portal/login/getCompany.html
      * 获取审核客户列表
      * uid 是从登陆获取的
-     * @param uid
      */
 
     @GET("portal/login/getCompany.html")
-    Call<CompanyBean> getCompanyShenhe(@Query("uid")int uid,@Query("aid")int aid);
+    Call<CompanyBean> getCompanyShenhe(@QueryMap HashMap<String,String> map);
 
 
     /**

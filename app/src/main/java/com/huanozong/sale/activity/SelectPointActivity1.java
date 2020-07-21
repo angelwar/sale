@@ -709,6 +709,10 @@ public class SelectPointActivity1 extends BaseActivity implements SugAdapter.OnI
             @Override
             public void onGetSuggestionResult(SuggestionResult suggestionResult) {
                 listsug.clear();
+                if(suggestionResult.getAllSuggestions()==null){
+                    Toast.makeText(SelectPointActivity1.this,"没有找到该关键词",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 listsug.addAll(suggestionResult.getAllSuggestions());
                 sugAdapter.notifyDataSetChanged();
             }

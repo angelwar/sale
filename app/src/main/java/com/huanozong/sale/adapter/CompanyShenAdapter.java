@@ -1,5 +1,6 @@
 package com.huanozong.sale.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
@@ -39,7 +40,7 @@ public class CompanyShenAdapter extends RecyclerView.Adapter<CompanyShenAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VH vh, final int i) {
+    public void onBindViewHolder(@NonNull VH vh, @SuppressLint("RecyclerView") final int i) {
         vh.textView.setText(companyList.get(i).getCompany());
         vh.brand.setText(companyList.get(i).getBrand());
         //1重点客户 2普通客户 3签约客户

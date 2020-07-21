@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.huanozong.sale.R
 import com.huanozong.sale.activity.LoginActivity
+import com.huanozong.sale.activity.ModifyPasswordActivity
 import com.huanozong.sale.activity.OrderListActivity
 import com.huanozong.sale.util.SharedPreferencesUtil
 import me.yokeyword.fragmentation.SupportFragment
@@ -43,6 +44,11 @@ class MyFragment : SupportFragment(){
         }
         val tv_order = root.findViewById<TextView>(R.id.tv_order)
         tv_order.setOnClickListener { startActivity(Intent(activity,OrderListActivity::class.java)) }
+
+        val modifyPassword = root.findViewById<TextView>(R.id.tv_modify)
+        modifyPassword.setOnClickListener {
+            startActivity(Intent(activity,ModifyPasswordActivity::class.java))
+        }
         return root
     }
 

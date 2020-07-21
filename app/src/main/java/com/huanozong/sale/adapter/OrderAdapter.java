@@ -1,5 +1,6 @@
 package com.huanozong.sale.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -55,7 +56,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.VH> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VH vh, final int i) {
+    public void onBindViewHolder(@NonNull VH vh, @SuppressLint("RecyclerView") final int i) {
         vh.tv.setText(list.get(i).getName());
         vh.order_id.setText("订单id："+list.get(i).getId());
         vh.tv_stime.setText(TimeUtil.timestampToDate(list.get(i).getStime()));

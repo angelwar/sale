@@ -6,10 +6,47 @@
 
     <include layout="@layout/common_title_layout"/>
 
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorWhite">
+        <EditText
+            android:layout_marginLeft="10dp"
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:hint="公司或者销售名称"
+            android:textSize="12sp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:id="@+id/sp_lx"
+            android:text="客户类型 >"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/sp_status"
+            android:text="审核状态 >"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"/>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_shenhelist"
         android:layout_below="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
