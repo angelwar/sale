@@ -1,5 +1,6 @@
 package com.huanozong.sale.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -31,7 +32,7 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.VH> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VH vh, final int i) {
+    public void onBindViewHolder(@NonNull VH vh, @SuppressLint("RecyclerView") final int i) {
         vh.textView.setText(companyList.get(i).getCompany());
         vh.textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +43,7 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.VH> {
 
             }
         });
+        vh.name.setText("所属销售："+companyList.get(i).getName());
         vh.time.setText("到期时间："+ TimeUtil.timestampToDate(companyList.get(i).getExpire_time()));
 
     }
@@ -54,11 +56,13 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.VH> {
     class VH extends RecyclerView.ViewHolder {
         TextView textView;
         TextView time;
+        TextView name;
 
         public VH(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.tv_company_name);
             time = itemView.findViewById(R.id.tv_expire_time);
+            name = itemView.findViewById(R.id.tv_name);
         }
     }
 

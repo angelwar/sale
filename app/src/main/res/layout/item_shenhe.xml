@@ -30,7 +30,6 @@
     </LinearLayout>
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/tv_sale_name"
         android:layout_marginLeft="10dp"
         android:textSize="12sp"

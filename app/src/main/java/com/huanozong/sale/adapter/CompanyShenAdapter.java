@@ -17,17 +17,17 @@ import com.huanozong.sale.bean.BaseBean;
 import com.huanozong.sale.bean.Company;
 import com.huanozong.sale.util.TimeUtil;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CompanyShenAdapter extends RecyclerView.Adapter<CompanyShenAdapter.VH> {
+public class CompanyShenAdapter extends BaseAdapter<Company> {
     private Context context;
-    public List<Company> companyList;
+    public ArrayList<Company> companyList;
 
-    public CompanyShenAdapter(Context context, List<Company> companyList) {
+    public CompanyShenAdapter(Context context, ArrayList<Company> companyList) {
         this.context = context;
         this.companyList = companyList;
     }
@@ -40,7 +40,8 @@ public class CompanyShenAdapter extends RecyclerView.Adapter<CompanyShenAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VH vh, @SuppressLint("RecyclerView") final int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, @SuppressLint("RecyclerView") final int i) {
+        VH vh = (VH) viewHolder;
         vh.textView.setText(companyList.get(i).getCompany());
         vh.brand.setText(companyList.get(i).getBrand());
         //1重点客户 2普通客户 3签约客户
@@ -51,7 +52,7 @@ public class CompanyShenAdapter extends RecyclerView.Adapter<CompanyShenAdapter.
             case 3:kehu = "签约客户";break;
         }
         vh.type.setText(kehu);
-//        vh.sale.setText(companyList.get(i).get());
+        vh.sale.setText("所属销售："+companyList.get(i).getName());
         vh.status.setText(companyList.get(i).getStatus()==1?"审核通过":"未通过");
         vh.time.setText("到期时间："+ TimeUtil.timestampToDate(companyList.get(i).getExpire_time()));
         vh.pass.setVisibility(companyList.get(i).getStatus()==1?View.GONE:View.VISIBLE);
@@ -77,7 +78,6 @@ public class CompanyShenAdapter extends RecyclerView.Adapter<CompanyShenAdapter.
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int in) {
-
                             }
                         })
                         .setNegativeButton("取消", null)

@@ -151,4 +151,12 @@ public interface APIService {
      */
     @GET("portal/login/changeKh.html")
     Call<BaseBean> changeKh(@Query("id")int id,@Query("ty")int ty);
+
+
+    /**
+     * 更改客户类型
+     * @return
+     */
+    @GET("portal/login/changeKW.html")
+    Call<BaseBean> changePassword(@Query("uid")int id,@Query("password")String password);
 }

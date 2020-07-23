@@ -13,6 +13,15 @@ public class Company implements Serializable {
     private List user;
     private long expire_time;
     private int status;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getStatus() {
         return status;
