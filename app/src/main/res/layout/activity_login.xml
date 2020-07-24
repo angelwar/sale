@@ -76,6 +76,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:hint="密码"
+                android:inputType="textPassword"
                 android:textSize="@dimen/sp_s_16"
                 android:textColor="@color/colorBlack"
                 android:background="@null"

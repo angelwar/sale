@@ -2,7 +2,6 @@ package com.huanozong.sale.Fragment
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -14,12 +13,13 @@ import android.view.ViewGroup
 import android.widget.*
 import com.huanozong.sale.R
 import com.huanozong.sale.adapter.CompanyShenAdapter
-import com.huanozong.sale.adapter.LoadMoreAdapterWrapper
-import com.huanozong.sale.adapter.OnLoad
 import com.huanozong.sale.api.HttpService
 import com.huanozong.sale.bean.Company
 import com.huanozong.sale.bean.CompanyBean
 import com.huanozong.sale.util.SharedPreferencesUtil
+import com.scwang.smart.refresh.footer.ClassicsFooter
+import com.scwang.smart.refresh.header.ClassicsHeader
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import kotlinx.android.synthetic.main.fragment_shenhe.*
 import me.yokeyword.fragmentation.SupportFragment
 import retrofit2.Call
@@ -36,7 +36,7 @@ class ShenheListFragment : SupportFragment(){
     var et_search : EditText? = null
     val statuses = Arrays.asList("审核状态 >","已审核","未审核")
     val lx = Arrays.asList("客户类型 >","重点客户","普通客户","签约客户")
-    var swipe_refresh : SwipeRefreshLayout?=null
+    var swipe_refresh : SmartRefreshLayout?=null
     var companyList = ArrayList<Company>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -49,6 +49,8 @@ class ShenheListFragment : SupportFragment(){
         reycleList = root.findViewById<RecyclerView>(R.id.rv_shenhelist)
 
         swipe_refresh = root.findViewById(R.id.swipe_refresh)
+        swipe_refresh?.setRefreshHeader(ClassicsHeader(activity))
+        swipe_refresh?.setRefreshFooter(ClassicsFooter(activity))
         val sp_status = root.findViewById<TextView>(R.id.sp_status);
         val sp_lx = root.findViewById<TextView>(R.id.sp_lx);
 
@@ -59,25 +61,21 @@ class ShenheListFragment : SupportFragment(){
         search.text = "搜索"
         search.setOnClickListener {
             page=1
+            companyList.clear()
             getData()}
         title.text = "审核列表"
 
-        swipe_refresh?.setOnRefreshListener {
-            indexlx=0
-            indexstatus=0
-            sp_lx.setText(lx[0])
-            sp_status.setText(statuses[0])
-            et_search?.setText("")
-            page = 1
-            getData()}
+        swipe_refresh?.setOnRefreshListener { clearData() }
+        swipe_refresh?.setOnLoadMoreListener { getData() }
 
         reycleList!!.layoutManager = LinearLayoutManager(activity)
         reycleList!!.addItemDecoration(DividerItemDecoration(activity, LinearLayoutManager.VERTICAL))
-        adapter = CompanyShenAdapter(activity,companyList)
+        adapter = CompanyShenAdapter(activity,companyList,false)
+        adapter?.setOnItemClickListen { clearData() }
         reycleList!!.adapter = adapter
-        LoadMoreAdapterWrapper(adapter, OnLoad() { pagePosition, pageSize, callback ->
-            getData()
-        })
+//        LoadMoreAdapterWrapper(adapter, OnLoad() { pagePosition, pageSize, callback ->
+//            getData()
+//        })
         setPopuwindou()
         sp_lx.setOnClickListener {
             popoList?.adapter = adapterlx
@@ -128,6 +126,7 @@ class ShenheListFragment : SupportFragment(){
     private fun getData() {
         map.put("uid",SharedPreferencesUtil.queryUserID(activity).toString())
         map.put("aid","7")
+        map.put("page",page.toString())
         if (indexlx!=0){
             map.put("lx",indexlx.toString())
         }else{
@@ -153,20 +152,40 @@ class ShenheListFragment : SupportFragment(){
             .getCompanyShenhe(map)
             .enqueue(object : Callback<CompanyBean>{
                 override fun onFailure(call: Call<CompanyBean>, t: Throwable) {
-                    swipe_refresh?.isRefreshing = false
+                    swipe_refresh?.finishLoadMore()
+                    swipe_refresh?.finishRefresh()
                 }
                 override fun onResponse(call: Call<CompanyBean>, response: Response<CompanyBean>) {
                     val company : CompanyBean? = response.body()
                     if (company != null) {
                         companyList.addAll(company.data)
-                        if (page!=company.page.last_page){
-                            page++
-                        }
                         adapter?.companyList = companyList
                         adapter?.notifyDataSetChanged()
+                        if (page<company.page.last_page){
+                            page++
+                            swipe_refresh?.finishLoadMore()
+                        }else{
+                            swipe_refresh?.finishLoadMoreWithNoMoreData()
+                        }
                     }
-                    swipe_refresh?.isRefreshing = false
+                    if (swipe_refresh?.isRefreshing!!){
+                        swipe_refresh?.finishRefresh()
+                    }
+
                 }
             })
+    }
+
+    private fun clearData(){
+        companyList.clear()
+        indexlx=0
+        indexstatus=0
+        sp_lx.setText(lx[0])
+        sp_status.setText(statuses[0])
+        sp_lx.setTextColor(Color.GRAY)
+        sp_status.setTextColor(Color.GRAY)
+        et_search?.setText("")
+        page = 1
+        getData()
     }
 }

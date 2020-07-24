@@ -41,7 +41,7 @@ public interface APIService {
      */
 
     @GET("portal/login/getCompany.html")
-    Call<CompanyBean> getCompany(@Query("uid")int uid);
+    Call<CompanyBean> getCompany(@Query("uid")int uid,@Query("page")int page);
 
     /**
      * http://app.hzmtkj.com/portal/login/getCompany.html

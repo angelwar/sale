@@ -14,19 +14,19 @@
         android:id="@+id/tv_company_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-        <TextView
-            android:padding="10dp"
-            android:text="--"
-            android:textSize="@dimen/dp_s_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:padding="10dp"
-            android:text="@string/app_name"
-            android:id="@+id/tv_company_brand"
-            android:textSize="@dimen/dp_s_10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+<!--        <TextView-->
+<!--            android:padding="10dp"-->
+<!--            android:text="&#45;&#45;"-->
+<!--            android:textSize="@dimen/dp_s_10"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
+<!--        <TextView-->
+<!--            android:padding="10dp"-->
+<!--            android:text="@string/app_name"-->
+<!--            android:id="@+id/tv_company_brand"-->
+<!--            android:textSize="@dimen/dp_s_10"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
     </LinearLayout>
 
     <TextView

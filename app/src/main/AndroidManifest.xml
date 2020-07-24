@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:replace="android:networkSecurityConfig">
-        <activity android:name=".activity.ModifyPasswordActivity"></activity>
+        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.ModifyPasswordActivity" />
         <activity android:name=".activity.OrderListActivity" />
         <activity android:name=".activity.CompanyDetailActivity" />
         <activity android:name=".activity.MyActivity" />
@@ -31,6 +32,7 @@
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -39,7 +41,7 @@
             android:name=".activity.HeadActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.SelectPointActivity1"
             android:screenOrientation="portrait" />

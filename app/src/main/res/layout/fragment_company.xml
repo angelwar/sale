@@ -1,28 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <include layout="@layout/common_title_layout"/>
-
+    android:layout_height="match_parent">
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <EditText
-        android:paddingLeft="10dp"
-        android:id="@+id/et_search"
-        android:hint="公司或销售名称"
-        android:textSize="12sp"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="搜索"/>
-    </LinearLayout>
+        android:layout_height="match_parent">
+    <include layout="@layout/common_title_layout"/>
     <LinearLayout
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -50,10 +34,33 @@
             android:textColor="@color/colorWhite"
             android:background="@drawable/bg_button_time"/>
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_componylist"
-        android:layout_below="@+id/title_bar"
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-
-</LinearLayout>
+        android:layout_height="match_parent">
+        <com.scwang.smart.refresh.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_companylist"
+            android:layout_below="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <com.scwang.smart.refresh.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+    </LinearLayout>
+    <TextView
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shap_circle_blue"
+        android:text="搜索\n客户"
+        android:textSize="12sp"
+        android:onClick="onSearchList"
+        android:layout_gravity="right|bottom"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+</FrameLayout>
