@@ -29,7 +29,7 @@ class HeadActivity : SupportActivity(){
         if(SharedPreferencesUtil.isAdmin(this)){
             tv_shenhe.visibility = View.VISIBLE
         }else{
-            tv_shenhe.visibility = View.VISIBLE
+            tv_shenhe.visibility = View.GONE
         }
 
         rg_bottom.setOnCheckedChangeListener { radioGroup, i ->
@@ -70,11 +70,7 @@ class HeadActivity : SupportActivity(){
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         val imm : InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (event?.action == MotionEvent.ACTION_DOWN){
-            if (currentFocus!=null){
-                if (currentFocus.windowToken!=null){
-                    imm.hideSoftInputFromWindow(currentFocus.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-                }
-            }
+            imm.hideSoftInputFromWindow(this.currentFocus.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
         }
         return super.onTouchEvent(event)
     }

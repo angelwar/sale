@@ -28,8 +28,7 @@
         <activity android:name=".activity.CompanyDetailActivity" />
         <activity android:name=".activity.MyActivity" />
         <activity
-            android:name=".activity.LoginActivity"
-            android:launchMode="singleTask">
+            android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

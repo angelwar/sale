@@ -12,7 +12,7 @@
         android:background="@color/color_bar_background"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="40dp">
         <ImageButton
             android:onClick="onBack"
             android:id="@+id/leftBack"
@@ -23,8 +23,8 @@
         <EditText
             android:gravity="center_vertical"
             android:maxLines="1"
+            android:inputType="text"
             android:background="@color/colorWhite"
-            android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:paddingLeft="10dp"
             android:id="@+id/et_search"
@@ -32,7 +32,7 @@
             android:textSize="12sp"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="40dp"/>
+            android:layout_height="36dp"/>
         <TextView
             android:gravity="center"
             android:textColor="@color/colorWhite"

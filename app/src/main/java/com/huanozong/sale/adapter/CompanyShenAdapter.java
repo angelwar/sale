@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class CompanyShenAdapter extends BaseAdapter<Company> {
     private Context context;
     private boolean isSearch;
     public ArrayList<Company> companyList;
+    private int index = 0;
 
     public CompanyShenAdapter(Context context, ArrayList<Company> companyList,boolean isSearch) {
         this.context = context;
@@ -52,13 +54,38 @@ public class CompanyShenAdapter extends BaseAdapter<Company> {
         vh.textView.setText(companyList.get(i).getCompany()+" - "+companyList.get(i).getBrand());
 //        vh.brand.setText(companyList.get(i).getBrand());
         //1重点客户 2普通客户 3签约客户
-        String kehu = "";
-        switch (companyList.get(i).getType()){
-            case 1:kehu = "重点客户";break;
-            case 2:kehu = "普通客户";break;
-            case 3:kehu = "签约客户";break;
-        }
-        vh.type.setText("客户类型："+kehu);
+        final String[] strings = new String[]{"重点客户","普通客户","签约客户"};
+//        String kehu = "";
+//        switch (companyList.get(i).getType()){
+//            case 1:kehu = "重点客户";break;
+//            case 2:kehu = "普通客户";break;
+//            case 3:kehu = "签约客户";break;
+//        }
+        vh.type.setText("客户类型："+strings[companyList.get(i).getType()-1]);
+        vh.type.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isSearch){
+                index = 0;
+                new AlertDialog.Builder(context).setTitle("更改状态类型？")
+                        .setSingleChoiceItems(strings, 0,new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                index = i;
+                            }
+                        })
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int in) {
+                                updataStatus(companyList.get(i).getId(),index+1);
+                            }
+                        })
+                        .setNegativeButton("取消", null)
+                        .create().show();
+            }
+            }
+        });
+
         vh.sale.setText("所属销售："+companyList.get(i).getName());
         vh.status.setText(companyList.get(i).getStatus()==1?"审核通过":"未通过");
         vh.time.setText("到期时间："+ TimeUtil.timestampToDate(companyList.get(i).getExpire_time()));
@@ -145,14 +172,19 @@ public class CompanyShenAdapter extends BaseAdapter<Company> {
     }
 
     private void updataStatus(int id,int ty){
+        Log.e("tag","type:"+ty);
         HttpService.getService().changeKh(id,ty).enqueue(new Callback<BaseBean>() {
             @Override
             public void onResponse(Call<BaseBean> call, Response<BaseBean> response) {
-
+                Toast.makeText(context, "更改状态成功", Toast.LENGTH_SHORT).show();
+                if (listen!=null){
+                    listen.onClick();
+                }
             }
 
             @Override
             public void onFailure(Call<BaseBean> call, Throwable t) {
+                Toast.makeText(context, "更改状态失败，请检查网络", Toast.LENGTH_SHORT).show();
 
             }
         });

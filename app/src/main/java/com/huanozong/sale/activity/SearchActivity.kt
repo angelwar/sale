@@ -89,6 +89,9 @@ class SearchActivity : AppCompatActivity() {
     }
 
     fun onSearch(v : View){
+        val imm : InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus.windowToken,InputMethodManager.HIDE_NOT_ALWAYS)
+
         startSearch()
     }
     fun onBack(v : View){

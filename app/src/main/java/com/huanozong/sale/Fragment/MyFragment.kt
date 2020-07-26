@@ -31,7 +31,9 @@ class MyFragment : SupportFragment(){
                     .setMessage("请选择确认退出登录").setNegativeButton("确定", object : DialogInterface.OnClickListener {
                         override fun onClick(dialog: DialogInterface?, which: Int) {
                             SharedPreferencesUtil.addUserID(activity, -1)
-                            startActivity(Intent(activity, LoginActivity::class.java))
+                            var intent = Intent(activity, LoginActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            activity?.startActivity(intent)
                             activity!!.finish()
                         }
                     }).setPositiveButton("取消", object : DialogInterface.OnClickListener {

@@ -50,7 +50,9 @@ class ModifyPasswordActivity : AppCompatActivity() {
                 val v = AlertDialog.Builder(this@ModifyPasswordActivity).setTitle("修改密码成功")
                     .setPositiveButton("确定") { p0, p1 ->
                         SharedPreferencesUtil.addUserID(this@ModifyPasswordActivity,-1)
-                        startActivity(Intent(this@ModifyPasswordActivity,LoginActivity::class.java))
+                        var intent = Intent(this@ModifyPasswordActivity, LoginActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
                     }
                 v.create().show()
 

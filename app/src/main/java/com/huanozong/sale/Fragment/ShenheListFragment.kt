@@ -1,5 +1,6 @@
 package com.huanozong.sale.Fragment
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.huanozong.sale.R
 import com.huanozong.sale.adapter.CompanyShenAdapter
@@ -60,6 +62,10 @@ class ShenheListFragment : SupportFragment(){
         search.visibility = View.VISIBLE
         search.text = "搜索"
         search.setOnClickListener {
+
+            val imm : InputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+
             page=1
             companyList.clear()
             getData()}
